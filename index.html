@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="ku" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>قوتابخانەیا هەڤال یا ئامادەیی بۆ کوڕان | پێشەنگێن زانستی</title>
+    <link href="C:\Users\DELL\Desktop\العاب\56" rel="stylesheet">
+    <style>
+        /* --- CSS و رێكخستنا گشتی --- */
+        :root {
+            --primary-color: #0c356a; /* شینەکێ تۆخ و فەرمی */
+            --secondary-color: #ffcc70; /* زەردەکێ جوان بۆ سەرنجڕاکێشان */
+            --accent-color: #fff4e0;
+            --text-dark: #272829;
+            --text-light: #ffffff;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Tajawal', sans-serif;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            color: var(--text-dark);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        /* --- نێڤیگەیشن (لیستا سەرەکی) --- */
+        header {
+            background-color: var(--primary-color);
+            padding: 1.2rem 6%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: var(--secondary-color);
+            font-size: 1.8rem;
+            font-weight: 800;
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin: 0 12px;
+        }
+
+        nav ul li a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+
+        nav ul li a:hover {
+            background-color: rgba(255, 204, 112, 0.2);
+            color: var(--secondary-color);
+        }
+
+        /* --- بەشێ هیرۆ (پێشوازیا مالپەری) --- */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(12, 53, 106, 0.7), rgba(12, 53, 106, 0.7)), 
+                        url(/Qotapxane.jpg);
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 4px 10px rgba(0,0,0,0.3);
+            animation: fadeInDown 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.4rem;
+            max-width: 800px;
+            margin-bottom: 2.5rem;
+            font-weight: 300;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 20px;
+        }
+
+        .btn {
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .btn-main {
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        /* --- پشکێن گشتی --- */
+        section {
+            padding: 100px 8%;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 2.8rem;
+            color: var(--primary-color);
+            position: relative;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            width: 60%;
+            height: 4px;
+            background: var(--secondary-color);
+            bottom: -10px;
+            left: 20%;
+            border-radius: 2px;
+        }
+
+        /* --- دەربارەی مە (About) --- */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-img img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 20px 20px 0px var(--secondary-color);
+        }
+
+        .about-content h3 {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        /* --- پشکێن زانستی (Departments) --- */
+        .dept-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .dept-card {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            border-bottom: 5px solid transparent;
+            transition: var(--transition);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .dept-card:hover {
+            border-bottom: 5px solid var(--primary-color);
+            transform: translateY(-15px);
+        }
+
+        .dept-icon {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+
+        /* --- ژمارێن مە (Counters) --- */
+        .stats-bar {
+            background-color: var(--primary-color);
+            padding: 80px 5%;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            color: white;
+        }
+
+        .stat-box {
+            text-align: center;
+            margin: 20px;
+        }
+
+        .stat-box h3 {
+            font-size: 3.5rem;
+            color: var(--secondary-color);
+        }
+
+        /* --- ستافێ مامۆستایان --- */
+        .teachers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .teacher-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .teacher-card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .teacher-info {
+            padding: 20px;
+        }
+        .teacher-card:hover {
+            border-bottom: 5px solid var(--primary-color);
+            transform: translateY(-15px);
+        }
+
+        /* --- پەیوەندی --- */
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 40px;
+            background: white;
+            padding: 40px;
+            border-radius: 30px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.05);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .form-group input:focus {
+            border-color: var(--primary-color);
+        }
+
+        /* --- فووتەر --- */
+        footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 80px 8% 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .footer-col h4 {
+            color: var(--secondary-color);
+            margin-bottom: 25px;
+            font-size: 1.3rem;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-col a {
+            color: #bbb;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .footer-col a:hover {
+            color: white;
+            padding-right: 10px;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #333;
+            font-size: 0.9rem;
+            color: #777;
+        }
+
+        /* --- ئەنیمەیشن --- */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* موبایل */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .about-grid { grid-template-columns: 1fr; }
+            .contact-wrapper { grid-template-columns: 1fr; }
+            header { flex-direction: column; }
+            nav ul { margin-top: 15px; flex-wrap: wrap; justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="#" class="logo">قۆتاپخانەیا هەڤال</a>
+        <nav>
+            <ul>
+                <li><a href="#home">سەرەکی</a></li>
+                <li><a href="#about">دەربارەی مە</a></li>
+                <li><a href="#depts">کارگیری</li>
+                <li><a href="#teachers">مامۆستا</a></li>
+                <li><a href="#contact">پەیوەندی</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero" id="home">
+        <h1>ئایندێ خوە ل گەل مە ئاڤا بکە</h1>
+        <p>بخێر بێی بۆ قوتابخانەیا هەڤال یا ئامادەیی، جهێ زانست، رەوشت و داهێنانێ. ئەم ل ڤێرێ نە دا کو نەوەیەکێ زانا و خودان شیان پەروەردە بکەین.</p>
+        <div class="btn-group">
+            <a href="#contact" class="btn btn-main">ناڤێ خوە تۆمار بکە</a>
+            <a href="#about" class="btn btn-outline">پتر بزانە</a>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="section-header">
+            <h2>دەربارەی قوتابخانەیێ</h2>
+        </div>
+        <div class="about-grid">
+            <div class="about-img">
+                <img src="/Qotapxane.jpg" alt="Haval School">
+            </div>
+            <div class="about-content">
+                <h3>دیرۆکەکا پڕ ژ سەرکەفتنێ</h3>
+                <p>قوتابخانەیا هەڤال یا ئامادەیی بۆ کوڕان، ئێکە ژ ناڤەندێن زانستی یێن پێشەنگ ل دەڤەرێ. ئارمانجا مە یا سەرەکی ئەوە کو قوتابیێن مە نە بتنێ د وانەیان دا سەرکەفتی بن، بەلکو د ژیانێ دا ژی ببنە نموونە.</p>
+                <br>
+                <p>ئەم گرنگیێ ب تەکنۆلۆژیا نوو د دەمێ وانەگوتنێ دا ددەین و هەول ددەین ژینگەهەکا ئارام و پڕ ژ زانست بۆ هەر قوتابییەکی دابین بکەین.</p>
+                <br>
+                <ul style="list-style: none;">
+                    <li>✅ کارگێڕیەکا خودان شیان و سەرکەفتی.</li>
+                    <li>✅ مامۆستایێن خودان ئەزموون و شارەزا.</li>
+                    <li>✅ گرنگیدان ب وەرزش و هونەری.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <div class="stats-bar">
+        <div class="stat-box">
+            <h3 data-target="500">0</h3>
+            <p>قوتابیێن مە</p>
+        </div>
+        <div class="stat-box">
+            <h3 data-target="20">0</h3>
+            <p>مامۆستایێن شارەزا</p>
+        </div>
+        <div class="stat-box">
+            <h3 data-target="13">0</h3>
+            <p>پۆلێن خویندنێ</p>
+        </div>
+        <div class="stat-box">
+            <h3 data-target="22">0</h3>
+            <p>سالێن خزمەتێ</p>
+        </div>
+    </div>
+
+    <section id="depts" style="background-color: #f0f2f5;">
+        <div class="section-header">
+            <h2>سەرکەفتنێن مە یێن کارگیری</h2>
+        </div>
+        <div class="dept-container">
+            <div class="dept-card">
+                <span class="dept-icon">🧪</span>
+                <h3>پشکا کیمیا و فیزیا</h3>
+                <p>دگەل مامۆستایێن سەرکەفتی و تاقیگەهێن سەردەمیانە،بنیاتێ سەرکەفتنا زانستی ددانن.</p>
+            </div>
+            <div class="dept-card">
+                <span class="dept-icon">📐</span>
+                <h3>پشکا بیرکاریێ</h3>
+                <p>مە باوەری ب وێ چەندێ  هەیە کو (بیرکاری  مەرجێ پێشکەفتنا هەر مللەتەکی یە)</p>
+            </div>
+            <div class="dept-card">
+                <span class="dept-icon">💻</span>
+                <h3>پشکا تەکنۆلۆژیا</h3>
+                <p>فێربوونا بنەماێن کۆمپیتەری و جیهانا دیجیتاڵی، ئارمانجا مە یە.</p>
+            </div>
+            <div class="dept-card">
+                <span class="dept-icon">⚽</span>
+                <h3>پشکا وەرزشی</h3>
+                <p>(مێشکێ ساخلەم ل لەشێ ساخلەم دا یە.)</p>
+            </div>
+            <div class="dept-card">
+                <span class="dept-icon">📚</span>
+                <h3>پشکا ئەدەبیاتێ</h3>
+                <p>گرنگیدان ب زمانێ کوردی و زمانێن بیانی.</p>
+            </div>
+            <div class="dept-card">
+                <span class="dept-icon">⚖️</span>
+                <h3>پەروەردەیا ئایینی</h3>
+                <p>ئایین پەیاما خودێ یە لسەر زمانێ پێغەمبەران(س.خ)</p>
+            </div>
+
+            <div class="dept-card">
+                <span class="dept-icon">🎨</span>
+                <h3>پشکا هونەری</h3>
+                <p>دەرخستنا بەهرەیێن قوتابیان د بوارێ وێنەکێشان و موزیکێ دا.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="teachers">
+        <div class="section-header">
+            <h2>دەستەکا خواندنێ</h2>
+        </div>
+            <div class="teacher-card">
+                <img src="/صورة واتساب بتاريخ 2025-11-25 في 17.53.30_2c76b616.jpg" alt="Mamosta">
+                <div class="teacher-info">
+                    <h4>م.دیار سرحان احمد</h4>
+                    <p>رێڤەبەرێ قۆتاپخانێ</p>
+                </div>
+            </div>
+            <div class="teacher-card">
+                <img src="/صورة واتساب بتاريخ 2025-11-25 في 17.53.30_2c76b616.jpg" alt="Mamosta">
+                <div class="teacher-info">
+                    <h4>م. مێهڤان قاسم الیاس</h4>
+                    <p>هاریکارێ رێڤەبەرێ قوتابخانێ</p>
+                </div>
+            </div>
+            <div class="teacher-card">
+                <img src="/صورة واتساب بتاريخ 2025-11-25 في 17.53.30_2c76b616.jpg" alt="Mamosta">
+                <div class="teacher-info">
+                    <h4>م.بلند فرحان توفیق</h4>
+                    <p>هاریکارێ رێڤەبەرێ قوتابخانێ</p>
+                </div>
+            </div>
+            <div class="teacher-card">
+                <img src="/صورة واتساب بتاريخ 2025-11-25 في 17.53.30_2c76b616.jpg" alt="Mamosta">
+                <div class="teacher-info">
+                    <h4>م.عطا یوسف اسماعیل</h4>
+                    <p>مامۆستایێ بیرکاری</p>
+                </div>
+            </div>
+            <div class="teacher-card">
+                <img src="/صورة واتساب بتاريخ 2025-11-25 في 17.53.30_2c76b616.jpg" alt="Mamosta">
+                <div class="teacher-info">
+                    <h4>م.زێرڤان علی عمر</h4>
+                    <p>مامۆستایێ بیرکاری</p>
+                </div>
+            </div>
+            <div class="teacher-card">
+                <img src="/صورة واتساب بتاريخ 2025-11-25 في 17.53.30_2c76b616.jpg" alt="Mamosta">
+                <div class="teacher-info">
+                    <h4>م.شڤان عمر جانگیر</h4>
+                    <p>مامۆستایێ بیرکاری</p>
+                </div>
+            </div>
+            <div class="teacher-card">
+                <img src="/صورة واتساب بتاريخ 2025-11-25 في 17.53.30_2c76b616.jpg" alt="Mamosta">
+                <div class="teacher-info">
+                    <h4>م.هشیار موسی یوسف</h4>
+                    <p>مامۆستایێ کیمیا</p>
+                </div>
+            </div>
+            <div class="teacher-card">
+                <img src="/صورة واتساب بتاريخ 2025-11-25 في 17.53.30_2c76b616.jpg" alt="Mamosta">
+                <div class="teacher-info">
+                    <h4>م.هوار عبدالله یوسف</h4>
+                    <p>مامۆستایێ کیمیا</p>
+                </div>
+            </div>
+
+            <div class="teacher-card">
+                <img src="/صورة واتساب بتاريخ 2025-11-25 في 17.53.30_2c76b616.jpg" alt="Mamosta">
+                <div class="teacher-info">
+                    <h4>م.بێوار جندی سمۆ</h4>
+                    <p>مامۆستایێ فیزیا</p>
+                </div>
+            </div>
+
+            <div class="teacher-card">
+                <img src="/صورة واتساب بتاريخ 2025-11-25 في 17.53.30_2c76b616.jpg" alt="Mamosta">
+                <div class="teacher-info">
+                    <h4>م. رمضان صبری محمد</h4>
+                    <p>مامۆستایێ فیزیا</p>
+                </div>
+            </div>
+            <div class="teacher-card">
+                <img src="/صورة واتساب بتاريخ 2025-11-25 في 17.53.30_2c76b616.jpg" alt="Mamosta">
+                <div class="teacher-info">
+                    <h4>م. ابراهیم عبدالوهاب عبدالغفور</h4>
+                    <p>مامۆستایێ زیندەوەرێ </p>
+                </div>
+            </div>
+            <div class="teacher-card">
+                <img src="/صورة واتساب بتاريخ 2025-11-25 في 17.53.30_2c76b616.jpg" alt="Mamosta">
+                <div class="teacher-info">
+                    <h4>م. عمر عصمت محمد</h4>
+                    <p>مامۆستایێ زیندەوەرێ</p>
+                </div>
+            </div>
+                        <div class="teacher-card">
+                <img src="/صورة واتساب بتاريخ 2025-11-25 في 17.53.30_2c76b616.jpg" alt="Mamosta">
+                <div class="teacher-info">
+                    <h4>م. خلات حاجی بشار</h4>
+                    <p>مامۆستایێ زمانێ کوردی</p>
+                </div>
+            </div>
+            <div class="teacher-card">
+                <img src="/صورة واتساب بتاريخ 2025-11-25 في 17.53.30_2c76b616.jpg" alt="Mamosta">
+                <div class="teacher-info">
+                    <h4>م. دلخاز شفیق</h4>
+                    <p>مامۆستایێ زمانێ کوردی</p>
+                </div>
+            </div>
+            <div class="teacher-card">
+                <img src="/صورة واتساب بتاريخ 2025-11-25 في 17.53.30_2c76b616.jpg" alt="Mamosta">
+                <div class="teacher-info">
+                    <h4>د. عیسی قاسم حسن</h4>
+                    <p>مامۆستایێ زمانێ عەرەبی</p>
+                </div>
+            </div>
+            <div class="teacher-card">
+                <img src="/صورة واتساب بتاريخ 2025-11-25 في 17.53.30_2c76b616.jpg" alt="Mamosta">
+                <div class="teacher-info">
+                    <h4>م. محمد عبدالکریم صبری</h4>
+                    <p>مامۆستایێ زمانێ عەرەبی</p>
+                </div>
+            </div>
+            <div class="teacher-card">
+                <img src="/صورة واتساب بتاريخ 2025-11-25 في 17.53.30_2c76b616.jpg" alt="Mamosta">
+                <div class="teacher-info">
+                    <h4>م. ئازاد جمیل ذیاب</h4>
+                    <p>مامۆستایێ زمانێ ئینگلیزی</p>
+                </div>
+            </div>
+            <div class="teacher-card">
+                <img src="/صورة واتساب بتاريخ 2025-11-25 في 17.53.30_2c76b616.jpg" alt="Mamosta">
+                <div class="teacher-info">
+                    <h4>م. ریمون حنا میخائیل</h4>
+                    <p>مامۆستایێ زمانێ ئینگلیزی</p>
+                </div>
+            </div>
+            <div class="teacher-card">
+                <img src="/صورة واتساب بتاريخ 2025-11-25 في 17.53.30_2c76b616.jpg" alt="Mamosta">
+                <div class="teacher-info">
+                    <h4>م. خلیل عبدالکریم خلیل</h4>
+                    <p>مامۆستایێ پەروەردەیا ئیسلامی</p>
+                </div>
+            </div>
+            <div class="teacher-card">
+                <img src="/صورة واتساب بتاريخ 2025-11-25 في 17.53.30_2c76b616.jpg" alt="Mamosta">
+                <div class="teacher-info">
+                    <h4>م. سمیع هادی سموعی</h4>
+                    <p>مامۆستایێ پەروەردەیا هونەری</p>
+                </div>
+            </div>
+    <section id="staff">
+        <div class="section-header">
+            <h2>ستافێ راگەهاندنا قۆتاپخانێ</h2>
+            <div class="teacher-card">
+                <img src="/صورة واتساب بتاريخ 2025-11-25 في 17.53.30_2c76b616.jpg" alt="Mamosta">
+                <div class="teacher-info">
+                    <h4> لۆڤان کۆڤان احمد</h4>
+                    <p>بەرپرسێ راگەهاندنا قۆتاپخانێ</p>
+                </div>
+            </div>
+            <div class="teacher-card">
+                <img src="/صورة واتساب بتاريخ 2025-11-25 في 17.53.30_2c76b616.jpg" alt="Mamosta">
+                <div class="teacher-info">
+                    <h4> ئەزدەشێر محمد ئوسمان</h4>
+                    <p>ستافێ قوتابخانێ</p>
+                </div>
+            </div>
+            <div class="teacher-card">
+                <img src="/صورة واتساب بتاريخ 2025-11-25 في 17.53.30_2c76b616.jpg" alt="Mamosta">
+                <div class="teacher-info">
+                    <h4> عبدالرحمن فارس تمر</h4>
+                    <p>ستافێ قوتابخانێ</p>
+                </div>
+            </div>
+
+
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="section-header">
+            <h2>دامەزراندن</h2>
+        </div>
+        <div class="contact-wrapper">
+            <div class="contact-info">
+                <h3>ناڤنیشان و دامەزراندن</h3>
+                <br>
+                <p>📍 زاخۆ - جاددا شەهیدا - برەخ مزگەفتا ابراهیم خلیل.  </p>
+                <br>
+                <p>📍 ل سالا (2004-2005) هاتییە دامەزراندن.  </p>
+                <br>
+                <p>📍 دەمێن دەوامێ (8:00 سپێدێ-4:00 ئێڤارێ).</p>
+
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>قوتابخانەیا هەڤال</h4>
+                <p>ناڤەندەکا پەروەردەیی یە هه‌ول دده‌ت باشترین خزمه‌تگۆزاریا زانستی پێشكێشی فێرخوازان بكه‌ت.</p>
+            </div>
+            <div class="footer-col">
+                <h4>لینکا ب لەز</h4>
+                <ul>
+                    <li><a href="#home">سەرەکی</a></li>
+                    <li><a href="#about">دەربارەی مە</a></li>
+                    <li><a href="instgagram.com/lovan.k.ahmed">ستافێ راگەهاندنا قوتابخانێ</a></li>
+                    <li><a href="#">چالاکیێن قوتابیان</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>تۆرێن جڤاکی</h4>
+                <ul>
+                    <li><a href="facebook.com">فەیسبووک</a></li>
+                    <li><a href="instagram.com">ئینستاگرام</a></li>
+                    <li><a href="sanpchat.com">سناپ چات</a></li>
+                    <p>واتساپ : 07501905707</p>
+                </ul>
+                <h4 style="text-align: center;">Web Designer</h4>
+                <li><a href="instagram.com/masood.7712">مسعود یحیی</a></li>
+                <li><a href="instagram.com/y.ous.if">یوسف جمال</a></li>
+
+
+            </div>
+        </div>
+        <div class="copyright">
+            هەمی ماف پاراستینە بۆ قوتابخانەیا هەڤال یا ئامادەیی © 2026
+        </div>
+    </footer>
+
+    <script>
+        // سکریپتێ ژمارە بارکرنێ (Counter)
+        const counters = document.querySelectorAll('.stat-box h3');
+        const speed = 100;
+
+        const startCounters = () => {
+            counters.forEach(counter => {
+                const updateCount = () => {
+                    const target = +counter.getAttribute('data-target');
+                    const count = +counter.innerText;
+                    const inc = target / speed;
+
+                    if (count < target) {
+                        counter.innerText = Math.ceil(count + inc);
+                        setTimeout(updateCount, 20);
+                    } else {
+                        counter.innerText = target;
+                    }
+                };
+                updateCount();
+            });
+        };
+
+        // دیتنا بەشێ ئامار د سکرینێ دا
+        let observer = new IntersectionObserver((entries) => {
+            if(entries[0].isIntersecting) {
+                startCounters();
+            }
+        }, { threshold: 0.5 });
+
+        observer.observe(document.querySelector('.stats-bar'));
+
+        // جوولەیا نەرم (Smooth Scroll)
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // نامەیا سەرکەفتنێ
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('دەستخۆش! نامەیا تە گەهشتە کارگێڕیا قوتابخانێ.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>
